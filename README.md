@@ -11,6 +11,7 @@
 ```
 
 ```
+### 2.在Startup的ConfigureServices方法中添加AddRouteHiding(services)，如下例子
 ```
  services.AddControllersWithViews().AddRouteHiding(services);
 ```
