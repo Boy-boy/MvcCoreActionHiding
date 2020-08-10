@@ -6,7 +6,7 @@ namespace RouteHidingTest.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    [RouteHiding]
+   // [RouteHiding]
     public class DemoController : ControllerBase
     {
       
@@ -19,6 +19,7 @@ namespace RouteHidingTest.Controllers
         }
 
         [HttpGet("hello-world")]
+        [RouteHiding]
         public string HelloWord()
         {
             return "hello world";

@@ -2,7 +2,7 @@
 
 namespace ActionHiding.Attributes
 {
-    [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
+    [AttributeUsage(AttributeTargets.All, AllowMultiple = true)]
     public class RouteHidingAttribute : Attribute
     {
     }
