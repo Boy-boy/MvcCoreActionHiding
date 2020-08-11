@@ -5,13 +5,13 @@ using System;
 
 namespace ActionHiding
 {
-    public static class ServiceCollectionRouteHidingExtensions
+    public static class ServiceCollectionRoutingHidingExtensions
     {
         public static IMvcBuilder AddRouteHiding(this IMvcBuilder mvcBuilder, IServiceCollection services)
         {
             if (services == null)
                 throw new ArgumentNullException(nameof(services));
-            services.TryAddEnumerable(ServiceDescriptor.Transient<IActionDescriptorProvider, RouteHidingActionDescriptorProvider>());
+            services.TryAddEnumerable(ServiceDescriptor.Transient<IActionDescriptorProvider, RoutingHidingActionDescriptorProvider>());
             return mvcBuilder;
         }
     }

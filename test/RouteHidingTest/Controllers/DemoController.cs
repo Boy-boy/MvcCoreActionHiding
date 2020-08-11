@@ -19,7 +19,7 @@ namespace RouteHidingTest.Controllers
         }
 
         [HttpGet("hello-world")]
-        [RouteHiding]
+        [RoutingHiding]
         public string HelloWord()
         {
             return "hello world";

@@ -6,25 +6,26 @@ using ActionHiding.Attributes;
 
 namespace ActionHiding
 {
-    public class RouteHidingActionDescriptorProvider : IActionDescriptorProvider
+    public class RoutingHidingActionDescriptorProvider : IActionDescriptorProvider
     {
         public int Order => -900;
 
         public void OnProvidersExecuted(ActionDescriptorProviderContext context)
         {
-            HashSet<string> stringSet = new HashSet<string>((IEqualityComparer<string>)StringComparer.OrdinalIgnoreCase);
-            for (int index = 0; index < context.Results.Count; ++index)
+            var stringSet = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            foreach (var result in context.Results)
             {
-                foreach (string key in (IEnumerable<string>)context.Results[index].RouteValues.Keys)
-                    stringSet.Add(key);
+                foreach (var routeValuesKey in result.RouteValues.Keys)
+                {
+                    stringSet.Add(routeValuesKey);
+                }
             }
-            for (int index = 0; index < context.Results.Count; ++index)
+            foreach (var result in context.Results)
             {
-                ActionDescriptor result = context.Results[index];
-                foreach (string key in stringSet)
+                foreach (var key in stringSet)
                 {
                     if (!result.RouteValues.ContainsKey(key))
-                        result.RouteValues.Add(key, (string)null);
+                        result.RouteValues.Add(key, null);
                 }
             }
         }
@@ -34,7 +35,7 @@ namespace ActionHiding
             var removeActionDescriptorList = new List<ActionDescriptor>();
             foreach (var actionDescriptor in context.Results)
             {
-                if (actionDescriptor.EndpointMetadata.Any(e => e.GetType() == typeof(RouteHidingAttribute)))
+                if (actionDescriptor.EndpointMetadata.Any(e => e.GetType() == typeof(RoutingHidingAttribute)))
                 {
                     removeActionDescriptorList.Add(actionDescriptor);
                 }
