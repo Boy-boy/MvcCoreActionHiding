@@ -7,7 +7,7 @@ namespace ActionHiding
 {
     public static class ServiceCollectionRoutingHidingExtensions
     {
-        public static IMvcBuilder AddRouteHiding(this IMvcBuilder mvcBuilder, IServiceCollection services)
+        public static IMvcBuilder AddRoutingHiding(this IMvcBuilder mvcBuilder, IServiceCollection services)
         {
             if (services == null)
                 throw new ArgumentNullException(nameof(services));
